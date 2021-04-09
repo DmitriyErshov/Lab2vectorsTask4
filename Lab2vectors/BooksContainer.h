@@ -59,6 +59,7 @@ public:
 
 	static void printToTheConsole(typename vector <Book> ::iterator begin, typename vector <Book> ::iterator end) {
 		ostream_iterator<Book> cout_it(cout, " ");
+
 		copy(begin, end, cout_it);
 	}
 
@@ -67,10 +68,7 @@ public:
 	}
 
 	void readFromConsole() {
-		istream_iterator<Book> cin_it(cin);
-
-		istream_iterator<Book> eos;
-
+		istream_iterator<Book> cin_it(cin), eos;
 
 		copy(cin_it, eos, back_inserter(container));
 	}
@@ -78,46 +76,30 @@ public:
 	vector<Book> findById(int id) {
 
 		vector<Book> result;
-		for (int i = 0; i < container.size(); i++)
-		{
-			if (container[i].getId() == id) {
-				result.push_back(container[i]);
-			}
-		}
+
+		copy_if(container.begin(), container.end(), result.begin(), [&id](Book& b) {return b.getId() == id; });
 	}
 
-	vector<Book> findByClientSecondName(string id) {
+	vector<Book> findByClientSecondName(string secondName) {
 		vector<Book> result;
-		for (int i = 0; i < container.size(); i++)
-		{
-			if (container[i].getClientSecondName() == id) {
-				result.push_back(container[i]);
-			}
-		}
+		
+		copy_if(container.begin(), container.end(), result.begin(), [&secondName](Book& b) {return b.getClientSecondName() == secondName; });
 
 		return result;
 	}
 
 	vector<Book> findByAuthor(string author) {
 		vector<Book> result;
-		for (int i = 0; i < container.size(); i++)
-		{
-			if (container[i].getAuthor() == author) {
-				result.push_back(container[i]);
-			}
-		}
+		
+		copy_if(container.begin(), container.end(), result.begin(), [&author](Book& b) {return b.getAuthor() == author; });
 
 		return result;
 	}
 
 	vector<Book> findByPublisher(string publisher) {
 		vector<Book> result;
-		for (int i = 0; i < container.size(); i++)
-		{
-			if (container[i].getPublisher() == publisher) {
-				result.push_back(container[i]);
-			}
-		}
+		
+		copy_if(container.begin(), container.end(), result.begin(), [&publisher](Book& b) {return b.getPublisher() == publisher; });
 
 		return result;
 	}
