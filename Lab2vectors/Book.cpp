@@ -50,7 +50,7 @@ ostream& operator<<(ostream& out, const Book& book)
     out << "Автор: " << book.author << endl;
     out << "Название: " << book.name << endl;
     out << "Год издания: " << book.publicationDate << endl;
-    out << "Издательство" << book.publisher;
+    out << "Издательство: " << book.publisher << endl;
     out << "Цена: " << book.price << endl;
 
     return out;

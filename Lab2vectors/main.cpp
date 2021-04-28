@@ -13,18 +13,21 @@ int main() {
 	SetConsoleOutputCP(1251);
 	SetConsoleCP(1251);
 
-	
-	Book* book = new Book();
 	BooksContainer container;
 	
 	container.readFromConsole();
 
-	cout << "-----------------------";
+	cout << "-----------------------\n";
 	container.printToTheConsole();
 
-	vector<Book> v1 = container.findByIdWithBinarySearch(3);
 
-	cout << "-----------------------";
+	//
+	vector<Book> v1 = container.findBy<int>(3, sortedParam::id);
+	//vector<Book> v1 = container.findById(3);
+	//vector<Book> v1 = container.findByWithBinarySearch<int>(3, sortedParam::id);
+
+
+	cout << "-------Абоненты с id = 3----------------\n";
 	BooksContainer::printToTheConsole(v1.begin(), v1.end());
 
 	return 0;
